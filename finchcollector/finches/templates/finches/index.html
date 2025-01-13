@@ -11,7 +11,10 @@
     <h1>Finch List</h1>
     {% for finch in finches %}
     <div class="card">
+        <a href="{% url 'detail' finch.id %}">
         <div class="card-content">
+        <div class="flex-container">
+            <div>
             <span class="card-title">Name: {{ finch.name }}</span>
             <p>Type: {{ finch.type }}</p>
             <p>Description: {{ finch.description }}</p>
@@ -20,11 +23,14 @@
             {% else %}
             <p>Age: Newly Born</p>
             {% endif %}
+            </div>
             <div>
                 {% load static %}
                 <img src="{% static finch.image|cut:'finches/static/' %}" width="100px" height="100px">
             </div>
+            </div>
         </div>
+        </a>
     </div>
     
     {% endfor %}
