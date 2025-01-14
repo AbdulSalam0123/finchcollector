@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from datetime import date
-
+from django.contrib.auth.models import User
 
 MEALS =(
     (
@@ -37,6 +37,7 @@ class Finch(models.Model):
     # image = models.CharField(default=None, blank=True, null=True, max_length=2000)
     image = models.ImageField(upload_to="finches/static/uploads/", default="")
     toys = models.ManyToManyField(Toy)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'finch_id': self.id})
